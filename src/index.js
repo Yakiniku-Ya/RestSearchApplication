@@ -1,18 +1,11 @@
 const url = "https://api.gnavi.co.jp/RestSearchAPI/v3/"
 const key = "6526d105b1d4506fdb09b7d64afa244b"
 
-// indexが呼び出された時にまず半径500で表示する
-// geolocationAPIで現在緯度経度取得
-
-/*  https://api.gnavi.co.jp/RestSearchAPI/v3/ 
-      ?keyid=6526d105b1d4506fdb09b7d64afa244b
-      &range=5
-      &latitude=34.511083
-      &longitude=135.785522
-  */
-new Vue({
+const main = new Vue({
     el: '#form',
     data: {
+        latitude: '', 
+        longitude: '',
         selected: '2',
         options: [
             { text: '300m', value: '1'},
@@ -22,23 +15,46 @@ new Vue({
             { text: '3km', value: '5'}
         ],
         req: '',
-        result: ''
+        results: [],
+        values: []
     },
     mounted () {
-      this.restSearch();
+        this.restSearch();
     },
     methods: {
-        restSearch: function() {
-            const req = url + "?keyid=" + key + "&range=" + this.selected + "&latitude=34.511083&longitude=135.785522"
-            this.req = req
-            axios
-                .get(req)
-                .then(response => (
-                    this.result = response
-                ))
-                .catch(error => {
-                    console.log(error)
-                })
+        restSearch: function () {
+            // if-elseで再帰的にやってるけど非同期処理？したほうがいいかも
+            if (this.latitude == '' || this.longitude == '') {
+                this.getLocation();
+            } else {
+                // todo urlをうまいこと形成できるやつ(method?)がほしいかも
+                const req = url + '?keyid=' + key + '&range=' + this.selected + '&latitude=' + this.latitude + '&longitude=' + this.longitude;
+                this.req = req;
+                axios
+                    .get(req)
+                    .then(response => {
+                        // todo1 jsonバラす
+                        // todo2 ページングなんとかする
+                        this.results = response.data;
+                    })
+                    .catch(error => {
+                        // todo エラー処理いろいろする
+                        console.log(error);
+                    })
+            }
+        },
+        getLocation: function () {
+            navigator.geolocation.getCurrentPosition (
+                function(position) {
+                    main.latitude = position.coords.latitude;
+                    main.longitude = position.coords.longitude;
+                    main.restSearch();
+                },
+                function(error) {
+                    // todo エラー表示なんかする
+                    alert('error: ' + error.code + ', ' + error.message);
+                }
+            )
         }
     }
 })
