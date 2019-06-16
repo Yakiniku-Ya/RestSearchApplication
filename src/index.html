@@ -6,10 +6,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
     <body>
-        <h1>RestaurantSearch with GnaviAPI</h1>
-
-        <h2>Search Settings</h2>
         <div id=form>
+            <h1>RestaurantSearch with GnaviAPI</h1>
+            <h2>Search Settings</h2>
             <form>
                 Radius: 
                 <select v-model="selected">
@@ -29,7 +28,7 @@
                 <div class="result" v-for="result in results">
                     <div class="thumbnail">
                         <img v-if=result.image.shop_image1 :src="result.image.shop_image1" alt="shop_img">
-                        <img v-else src="http://design-ec.com/d/e_others_50/l_e_others_500.png" alt="shop_img">
+                        <img v-else src="./images/no_image.png" alt="shop_img">
                     </div>
                     <div class="contents">
                         <span class="shop_name">{{ result.name }}</span><br>

@@ -12,7 +12,8 @@ html, body {
 div.result {
     display: flex;
     align-items: center;
-    border: solid 2px #000000; 
+    border: solid 1px #000000; 
+    margin-bottom: 5px;
 }
 
 div.thumbnail {

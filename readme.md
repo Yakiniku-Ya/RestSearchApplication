@@ -1,4 +1,4 @@
-# webapp
+# RestSearchApplication
 ## つかいかた
 * ダウンロードする
 * src/index.htmlを適当なブラウザで開く
