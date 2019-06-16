@@ -25,15 +25,15 @@
             </div>
             <div v-else>
                 <h2>Result ({{ result.data.total_hit_count }})</h2>
-                <div class="result" v-for="result in results">
+                <div class="element" v-for="element in results">
                     <div class="thumbnail">
-                        <img v-if=result.image.shop_image1 :src="result.image.shop_image1" alt="shop_img">
-                        <img v-else src="./images/no_image.png" alt="shop_img">
+                        <img v-if=element.image.shop_image1 :src="element.image.shop_image1" alt="shop_image">
+                        <img v-else src="./images/no_image.png" alt="shop_image">
                     </div>
                     <div class="contents">
-                        <span class="shop_name">{{ result.name }}</span><br>
-                        <span class="shop_address">{{ result.address }}</span><br>
-                        <span class="shop_access">{{ result.access }}</span>
+                        <span class="shop_name">{{ element.name }}</span><br>
+                        <span class="shop_address">{{ element.address }}</span><br>
+                        <span class="shop_access">{{ element.access }}</span>
                     </div>
                 </div>
             </div>

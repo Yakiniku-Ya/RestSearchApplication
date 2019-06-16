@@ -6,6 +6,7 @@ const main = new Vue({
     data: {
         latitude: '', 
         longitude: '',
+        page: 0,
         selected: '2',
         options: [
             {text: '300m', value: '1'},
@@ -29,11 +30,15 @@ const main = new Vue({
             if (this.latitude == '' || this.longitude == '') {
                 this.getLocation();
             } else {
-                // todo urlをうまいこと形成できるやつ(method?)がほしいかも
-                const req = url + '?keyid=' + key + '&range=' + this.selected + '&latitude=' + this.latitude + '&longitude=' + this.longitude;
-                this.req = req;
                 axios
-                    .get(req)
+                    .get(url, {
+                        params: {
+                            keyid: key,
+                            range: this.selected,
+                            latitude: this.latitude,
+                            longitude: this.longitude,
+                            offset_page: this.page+1
+                        }})
                     .then(response => {
                         // todo ページングなんとかする
                         this.error_message = '';
@@ -72,6 +77,7 @@ const main = new Vue({
                     })
             }
         },
+
         getLocation: function () {
             navigator.geolocation.getCurrentPosition (
                 function(position) {

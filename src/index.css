@@ -9,11 +9,11 @@ html, body {
     font-weight: 700;
 }
 
-div.result {
+div.element {
     display: flex;
     align-items: center;
     border: solid 1px #000000; 
-    margin-bottom: 5px;
+    margin: 5px 0;
 }
 
 div.thumbnail {
@@ -25,7 +25,6 @@ div.thumbnail {
 
 div.thumbnail img {
     height: 100%;
-    margin: 0 auto;
 }
 
 div.contents {
