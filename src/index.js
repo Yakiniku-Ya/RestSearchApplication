@@ -8,13 +8,15 @@ const main = new Vue({
         longitude: '',
         selected: '2',
         options: [
-            { text: '300m', value: '1'},
-            { text: '500m', value: '2'},
-            { text: '1km', value: '3'},
-            { text: '2km', value: '4'},
-            { text: '3km', value: '5'}
+            {text: '300m', value: '1'},
+            {text: '500m', value: '2'},
+            {text: '1km', value: '3'},
+            {text: '2km', value: '4'},
+            {text: '3km', value: '5'}
         ],
         req: '',
+        error_message: '',
+        result: [],
         results: [],
         values: []
     },
@@ -33,13 +35,40 @@ const main = new Vue({
                 axios
                     .get(req)
                     .then(response => {
-                        // todo1 jsonバラす
-                        // todo2 ページングなんとかする
-                        this.results = response.data;
+                        // todo ページングなんとかする
+                        this.error_message = '';
+                        this.result = response;
+                        this.results = [];
+                        const results = response.data.rest;
+                        for (let i = 0; i < results.length; i++) {
+                            const result = {
+                                name: results[i].name,
+                                image: results[i].image_url,
+                                address: results[i].address,
+                                access: results[i].access
+                            };
+                            this.results.push(result);
+                        }
                     })
                     .catch(error => {
-                        // todo エラー処理いろいろする
-                        console.log(error);
+                        // エラー処理geoLocationとまとめられないか？
+                        const code = Number(error.toString().slice(-3));
+                        var message = '';
+                        switch (code) {
+                            case 400: 
+                                message = '検索パラメータが不正です。'; break;
+                            case 401: 
+                                message = 'アクセスが不正です。'; break;
+                            case 404:
+                                message = '指定の店舗は存在しません。'; break;
+                            case 405:
+                                message = 'アクセスが不正です。'; break;
+                            case 429:
+                                message = 'リクエスト回数が上限に達しました。'; break;
+                            case 500:
+                                message = '処理中にエラーが発生しました。'; break;
+                        }
+                        this.error_message = message;
                     })
             }
         },
@@ -51,8 +80,16 @@ const main = new Vue({
                     main.restSearch();
                 },
                 function(error) {
-                    // todo エラー表示なんかする
-                    alert('error: ' + error.code + ', ' + error.message);
+                    var message = '';
+                    switch (error.code) {
+                        case 1: 
+                            message = 'ブラウザの位置情報の利用を許可してください。'; break;
+                        case 2: 
+                            message = '端末の位置を判定できません。'; break;
+                        case 3:
+                            message = 'リクエストがタイムアウトしました。'; break;
+                    }
+                    main.error_message = message;
                 }
             )
         }

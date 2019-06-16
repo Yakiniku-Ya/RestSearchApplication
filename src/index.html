@@ -3,13 +3,15 @@
         <link rel="stylesheet" href="index.css">
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
     <body>
-        <h1>れすとらんさーち with ぐるなびAPI</h1>
+        <h1>RestaurantSearch with GnaviAPI</h1>
 
         <div id=form>
-            <h2>せんたく</h2>
+            <h2>Search Settings</h2>
             <form>
+                Radius: 
                 <select v-model="selected">
                     <option v-for="option in options" v-bind:value="option.value">
                         {{ option.text }}
@@ -17,17 +19,25 @@
                 </select>
                 <button type="button" @click="restSearch">Search</button>
             </form>
-
-            <h2>りくえすと</h2>
-            <p>
-                {{ latitude }}, {{ longitude }} <br>
-                {{ req }}
-            </p>
-
-            <h2>れすぽんす</h2>
-            <p>
-                {{ results }}
-            </p>
+            <div v-if="error_message">
+                <p>
+                    {{ error_message }}
+                </p>
+            </div>
+            <div v-else>
+                <h2>Result ({{ result.data.total_hit_count }})</h2>
+                <div class="result" v-for="result in results">
+                    <div class="thumbnail">
+                        <img v-if=result.image.shop_image1 :src="result.image.shop_image1" alt="shop_img">
+                        <img v-else src="http://design-ec.com/d/e_others_50/l_e_others_500.png" alt="shop_img">
+                    </div>
+                    <div class="contents">
+                        <span class="shop_name">{{ result.name }}</span><br>
+                        <span class="shop_address">{{ result.address }}</span><br>
+                        <span class="shop_access">{{ result.access }}</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <script src="index.js"></script>
