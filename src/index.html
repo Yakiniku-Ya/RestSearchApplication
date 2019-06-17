@@ -1,13 +1,11 @@
 <html>
     <head>
         <link rel="stylesheet" href="index.css">
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
     <body>
         <div id=form>
-            <h1>RestaurantSearch with GnaviAPI</h1>
+            <h1><a href="./index.html">RestaurantSearch with GnaviAPI</a></h1>
             <h2>Search Settings</h2>
             <form>
                 Radius: 
@@ -16,7 +14,7 @@
                         {{ option.text }}
                     </option>
                 </select>
-                <button type="button" @click="restSearch">Search</button>
+                <button type="button" @click="submit">Search</button>
             </form>
             <div v-if="error_message">
                 <p>
@@ -25,20 +23,31 @@
             </div>
             <div v-else>
                 <h2>Result ({{ result.data.total_hit_count }})</h2>
-                <div class="element" v-for="element in results">
-                    <div class="thumbnail">
-                        <img v-if=element.image.shop_image1 :src="element.image.shop_image1" alt="shop_image">
-                        <img v-else src="./images/no_image.png" alt="shop_image">
+                    <div class="element" v-for="element in results">
+                        
+                        <div class="thumbnail">
+                            <img v-if=element.image.shop_image1 :src="element.image.shop_image1" alt="shop_image">
+                            <img v-else src="./images/no_image.png" alt="shop_image">
+                        </div>
+                        <div class="contents">
+                            <span class="shop_name">{{ element.name }}</span><br>
+                            <span class="shop_address">{{ element.address }}</span><br>
+                            <span class="shop_access">{{ element.access }}</span>
+                        </div>
+
+                        <a id="link" :href="'./detail.html?' + element.id"></a>
                     </div>
-                    <div class="contents">
-                        <span class="shop_name">{{ element.name }}</span><br>
-                        <span class="shop_address">{{ element.address }}</span><br>
-                        <span class="shop_access">{{ element.access }}</span>
-                    </div>
-                </div>
             </div>
+            <infinite-loading @infinite="restSearch" spinner="spiral">
+                <span slot="no-results">No results.</span>
+                <span slot="no-more">Loading End.</span>
+            </infinite-loading>
         </div>
 
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/vue-infinite-loading@^2/dist/vue-infinite-loading.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
         <script src="index.js"></script>
     </body>
 </html>
