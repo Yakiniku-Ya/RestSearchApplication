@@ -53,7 +53,8 @@ const main = new Vue({
                             name: results[i].name,
                             image: results[i].image_url,
                             address: results[i].address,
-                            access: results[i].access
+                            access: results[i].access,
+                            category: results[i].category
                         };
                         this.results.push(result);
                     }

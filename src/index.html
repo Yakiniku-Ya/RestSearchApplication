@@ -5,10 +5,12 @@
     </head>
     <body>
         <div id=form>
-            <h1><a href="./index.html">RestaurantSearch with GnaviAPI</a></h1>
+            <div id="top">
+                <h1><a href="./index.html">RestaurantSearch with GnaviAPI</a></h1>
+            </div>
             <h2>Search Settings</h2>
             <form>
-                Radius: 
+                Range: 
                 <select v-model="selected">
                     <option v-for="option in options" v-bind:value="option.value">
                         {{ option.text }}
@@ -29,13 +31,21 @@
                             <img v-if=element.image.shop_image1 :src="element.image.shop_image1" alt="shop_image">
                             <img v-else src="./images/no_image.png" alt="shop_image">
                         </div>
-                        <div class="contents">
+                        <div id="content">
                             <span class="shop_name">{{ element.name }}</span><br>
-                            <span class="shop_address">{{ element.address }}</span><br>
-                            <span class="shop_access">{{ element.access }}</span>
+                            <span class="shop_address">店舗住所：{{ element.address }}</span><br>
+                            <span class="shop_access">アクセス：<span
+                                >{{ element.access.line }}{{ element.access.station}}</span
+                                ><span v-if="element.access.station_exit">({{ element.access.station_exit }})</span
+                                >から{{ element.access.walk }}分</span><br>
+                            <span class="shop_category">カテゴリ：{{ element.category }}</span>
                         </div>
 
-                        <a id="link" :href="'./detail.html?' + element.id"></a>
+                        <!--
+                            検索設定の保存をしたい
+                            ?range=3&id=xxxx&keyword=keyみたいな感じでいけるか？
+                        -->
+                        <a id="link" :href="'./detail.html?id=' + element.id"></a>
                     </div>
             </div>
             <div id="paging">
@@ -44,15 +54,8 @@
                 <span @click="nextPage">next</span>
             </div>
             <span v-if="message">{{message}}</span>
-            <!--
-            <infinite-loading @infinite="restSearch" spinner="spiral" ref="infiniteLoading">
-            </infinite-loading>
-            -->
         </div>
 
-        <!--
-        <script src="https://unpkg.com/vue-infinite-loading@^2/dist/vue-infinite-loading.js"></script>
-        -->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="./scripts/index.js"></script>

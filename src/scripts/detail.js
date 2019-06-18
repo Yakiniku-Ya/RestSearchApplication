@@ -23,7 +23,8 @@ const detail = new Vue({
                 })
                 .then(response => {
                     this.error_message = '';
-                    this.result = response;
+                    const result = response.data.rest[0];
+                    this.result = result;
                 })
                 .catch(error => {
                     const code = Number(error.toString().slice(-3));
@@ -47,9 +48,9 @@ const detail = new Vue({
         },
         getRestId: function () {
             // urlからidパラメータを切り抜くやつ
-            // ex: 'http://xxx.com/detail.html?abc123' -> 'abc123'
+            // ex: 'http://xxx.com/detail.html?id=abc123' -> 'abc123'
             const url = location.href
-            const index = url.lastIndexOf('?') + 1
+            const index = url.lastIndexOf('?id=') + 4
             this.id = url.slice(index)
         }
     }

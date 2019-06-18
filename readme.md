@@ -14,8 +14,25 @@
 * 見た目をなんとかする
 * ...など
 
+## やりたいこと
+* 途中で断念したinfinite-loadingしたい............
+
 ## かんきょう
 * MacBookPro
 * VSCode
 * JavaScript
 * Vue.js
+
+## dir
+> webapp
+    - readme.md
+    > src
+        > images
+            - no_image.png
+        > scripts
+            - index.js
+            - detail.js
+        > styles
+            - style.css
+        - index.html
+        - detail.html

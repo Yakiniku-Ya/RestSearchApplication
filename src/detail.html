@@ -4,17 +4,50 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
     <body>
-        <div id=detail>
+        <div id="top">
             <h1><a href="./index.html">RestaurantSearch with GnaviAPI</a></h1>
-            <div v-if="error_message">
-                <p>
-                    {{ error_message }}
-                </p>
-            </div>
-            <div v-else>
-                <p>
-                    {{ result }}
-                </p>
+        </div>
+        <div id=detail>
+            <div id="header">
+                <div class="image">
+                    <img v-if="result.image_url.shop_image1" :src="result.image_url.shop_image1" alt="shop_image">
+                </div>
+                <div class="heads">
+                    <h2>{{ result.name }}</h2>
+                    <span class="kana">{{ result.name_kana }}</span><br>
+                    <hr>
+                    <ul id="status">
+                        <li>
+                            <span class="title">店舗住所：</span>
+                            <span class="address" v-if="result.address">{{ result.address }}</span>
+                            <span v-else>No Data X(</span>
+                        </li>
+                        <li>
+                            <span class="title">アクセス：</span>
+                            <span class="access">
+                                <span>{{ result.access.line }}{{ result.access.station}}</span
+                                ><span v-if="result.access.station_exit">({{ result.access.station_exit }})</span
+                                >から{{ result.access.walk }}分
+                            </span>
+                        </li>
+                        <li>
+                            <span class="title">電話番号：</span>
+                            <span class="tel" v-if="result.tel">{{ result.tel }}</span>
+                            <span v-else>No Data X(</span>
+                        </li>
+                        <li v-if="result.opentime">
+                            <span class="title">営業日時：</span>
+                            <span class="opentime">{{ result.opentime }}</span>
+                        </li>
+                        <li v-if="result.holyday">
+                            <span class="title">休業日時：</span>
+                            <span class="holyday">{{ result.holyday }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <article>
+
+                </article>
             </div>
             <a href="./index.html">Back to Home.</a>
         </div>
