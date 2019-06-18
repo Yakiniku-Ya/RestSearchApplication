@@ -8,6 +8,7 @@ const main = new Vue({
         latitude: '', 
         longitude: '',
         page: 0,
+        pages: -1,
         selected: '2',
         options: [
             {text: '300m', value: '1'},
@@ -17,6 +18,7 @@ const main = new Vue({
             {text: '3km', value: '5'}
         ],
         req: '',
+        message: '',
         error_message: '',
         result: [],
         results: [],
@@ -31,17 +33,22 @@ const main = new Vue({
             if (this.latitude == '' || this.longitude == '') {
                 this.getLocation();
             } else {
-                axios
+                if (this.page == this.pages) {
+                    $state.complete();
+                } else {
+                    axios
                     .get(url, {
                         params: {
                             keyid: key,
                             range: this.selected,
                             latitude: this.latitude,
                             longitude: this.longitude,
-                            offset_page: this.page+1
+                            offset_page: this.page + 1
                         }
                     })
                     .then(response => {
+                        this.pages = Math.round(Number(response.data.total_hit_count)/10)
+                        console.log(this.page + '/' + this.pages + '(' + response.data.total_hit_count + ')')
                         this.page += 1;
                         this.error_message = '';
                         this.result = response;
@@ -56,9 +63,6 @@ const main = new Vue({
                             };
                             this.results.push(result);
                         }
-                        const pages = Math.round(Number(response.data.total_hit_count)/10)
-                        console.log(this.page + '/' + pages + '(' + response.data.total_hit_count + ')')
-                        $state.loaded();
                     })
                     .catch(error => {
                         // エラー処理geoLocationとまとめられないか？
@@ -80,6 +84,7 @@ const main = new Vue({
                         }
                         this.error_message = message;
                     })
+                }
             }
         },
 
@@ -106,7 +111,9 @@ const main = new Vue({
         },
 
         submit: function () {
+            // Searchボタンをおしてsubmitした時の挙動というかpageとかのリセット。
             this.page = 0;
+            this.pages = -1;
             this.results = [];
             this.restSearch();
         }

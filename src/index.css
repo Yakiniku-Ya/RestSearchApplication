@@ -24,13 +24,14 @@ div.element {
 
 div.thumbnail {
     background-color: gray;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     text-align: center;
 }
 
 div.thumbnail img {
-    height: 100%;
+    height: auto;
+    width: 150px;
 }
 
 div.contents {

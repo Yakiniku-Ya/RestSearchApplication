@@ -38,10 +38,11 @@
                         <a id="link" :href="'./detail.html?' + element.id"></a>
                     </div>
             </div>
-            <infinite-loading @infinite="restSearch" spinner="spiral">
-                <span slot="no-results">No results.</span>
-                <span slot="no-more">Loading End.</span>
+            <span v-if="message">{{message}}</span>
+            <!--
+            <infinite-loading @infinite="restSearch" spinner="spiral" ref="infiniteLoading">
             </infinite-loading>
+            -->
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
