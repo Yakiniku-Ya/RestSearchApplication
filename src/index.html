@@ -39,9 +39,9 @@
                     </div>
             </div>
             <div id="paging">
-                <a class="prev" @click="prevPage">prev</a> 
+                <span @click="prevPage">prev</span> 
                 {{ page + 1 }} / {{ pages }}
-                <a class="next" @click="nextPage">next</a>
+                <span @click="nextPage">next</span>
             </div>
             <span v-if="message">{{message}}</span>
             <!--

@@ -49,7 +49,7 @@ div#paging {
     text-align: center;
 }
 
-div#paging a {
+div#paging span {
     padding: 5px 10px;
     color: black;
     border: solid 1px black;

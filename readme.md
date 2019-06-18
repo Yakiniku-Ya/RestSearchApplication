@@ -1,19 +1,16 @@
 # RestSearchApplication
 ## つかいかた
-* ダウンロードする
-* src/index.htmlを適当なブラウザで開く
-* 位置情報の使用を許可する
-* 半径を適当に変更してもうSearchする
+* https://yakiniku-ya.github.io/RestSearchApplication/src/index.html
 
 ## やったこと
 * 半径指定でボタン押したらリクエストできるようにした
 * GeolocationAPIで緯度経度取得
 * レスポンスを名前とサムネとアクセスに絞って並べて表示
-* 
+* ページング（prevとnextボタン実装）
+* 店舗詳細ページに遷移するようにできた
 
 ## やること
-* 商品詳細ページを作る & 遷移設定
-* ページングに対応する
+* 店舗詳細ページを作る
 * 見た目をなんとかする
 * ...など
 
