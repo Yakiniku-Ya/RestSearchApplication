@@ -8,7 +8,7 @@ const main = new Vue({
         latitude: '', 
         longitude: '',
         page: 0,
-        pages: -1,
+        pages: 1,
         selected: '2',
         options: [
             {text: '300m', value: '1'},
@@ -33,42 +33,37 @@ const main = new Vue({
             if (this.latitude == '' || this.longitude == '') {
                 this.getLocation();
             } else {
-                if (this.page == this.pages) {
-                    $state.complete();
-                } else {
-                    axios
-                    .get(url, {
-                        params: {
-                            keyid: key,
-                            range: this.selected,
-                            latitude: this.latitude,
-                            longitude: this.longitude,
-                            offset_page: this.page + 1
-                        }
-                    })
-                    .then(response => {
-                        this.pages = Math.round(Number(response.data.total_hit_count)/10)
-                        console.log(this.page + '/' + this.pages + '(' + response.data.total_hit_count + ')')
-                        this.page += 1;
-                        this.error_message = '';
-                        this.result = response;
-                        const results = response.data.rest;
-                        for (let i = 0; i < results.length; i++) {
-                            const result = {
-                                id: results[i].id,
-                                name: results[i].name,
-                                image: results[i].image_url,
-                                address: results[i].address,
-                                access: results[i].access
-                            };
-                            this.results.push(result);
-                        }
-                    })
-                    .catch(error => {
-                        // エラー処理geoLocationとまとめられないか？
-                        const code = Number(error.toString().slice(-3));
-                        var message = '';
-                        switch (code) {
+                axios
+                .get(url, {
+                    params: {
+                        keyid: key,
+                        range: this.selected,
+                        latitude: this.latitude,
+                        longitude: this.longitude,
+                        offset_page: this.page + 1
+                    }
+                })
+                .then(response => {
+                    this.error_message = '';
+                    this.pages = Math.ceil(Number(response.data.total_hit_count)/10);
+                    this.result = response;
+                    const results = response.data.rest;
+                    for (let i = 0; i < results.length; i++) {
+                        const result = {
+                            id: results[i].id,
+                            name: results[i].name,
+                            image: results[i].image_url,
+                            address: results[i].address,
+                            access: results[i].access
+                        };
+                        this.results.push(result);
+                    }
+                })
+                .catch(error => {
+                    // エラー処理geoLocationとまとめられないか？
+                    const code = Number(error.toString().slice(-3));
+                    var message = '';
+                    switch (code) {
                             case 400: 
                                 message = '検索パラメータが不正です。'; break;
                             case 401: 
@@ -81,10 +76,9 @@ const main = new Vue({
                                 message = 'リクエスト回数が上限に達しました。'; break;
                             case 500:
                                 message = '処理中にエラーが発生しました。'; break;
-                        }
-                        this.error_message = message;
-                    })
-                }
+                    }
+                    this.error_message = message;
+                })
             }
         },
 
@@ -114,6 +108,25 @@ const main = new Vue({
             // Searchボタンをおしてsubmitした時の挙動というかpageとかのリセット。
             this.page = 0;
             this.pages = -1;
+            this.results = [];
+            this.restSearch();
+        },
+
+        prevPage: function () {
+            if (0 <= this.page) {
+                return;
+            }
+            this.page -= 1;
+            this.results = [];
+            this.restSearch();
+        },
+
+        nextPage: function () {
+            // 16 16
+            if (this.page + 1 >= this.pages) {
+                return;
+            }
+            this.page += 1;
             this.results = [];
             this.restSearch();
         }

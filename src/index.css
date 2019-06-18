@@ -30,8 +30,8 @@ div.thumbnail {
 }
 
 div.thumbnail img {
-    height: auto;
-    width: 150px;
+    height: 150px;
+    width: 100%;
 }
 
 div.contents {
@@ -43,4 +43,15 @@ div.contents {
     position: absolute;
     width: 100%;
     height: 100%;
+}
+
+div#paging {
+    text-align: center;
+}
+
+div#paging a {
+    padding: 5px 10px;
+    color: black;
+    border: solid 1px black;
+    text-decoration: none;
 }

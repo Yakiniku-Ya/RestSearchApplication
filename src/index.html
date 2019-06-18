@@ -38,6 +38,11 @@
                         <a id="link" :href="'./detail.html?' + element.id"></a>
                     </div>
             </div>
+            <div id="paging">
+                <a class="prev" @click="prevPage">prev</a> 
+                {{ page + 1 }} / {{ pages }}
+                <a class="next" @click="nextPage">next</a>
+            </div>
             <span v-if="message">{{message}}</span>
             <!--
             <infinite-loading @infinite="restSearch" spinner="spiral" ref="infiniteLoading">
@@ -45,10 +50,11 @@
             -->
         </div>
 
+        <!--
+        <script src="https://unpkg.com/vue-infinite-loading@^2/dist/vue-infinite-loading.js"></script>
+        -->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script src="https://unpkg.com/vue-infinite-loading@^2/dist/vue-infinite-loading.js"></script>
-        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
         <script src="index.js"></script>
     </body>
 </html>
