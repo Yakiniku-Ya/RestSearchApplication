@@ -39,7 +39,8 @@ const main = new Vue({
                         range: this.selected,
                         latitude: this.latitude,
                         longitude: this.longitude,
-                        offset_page: this.page + 1
+                        offset_page: this.page + 1,
+                        hit_per_page: 30
                     }
                 })
                 .then(response => {

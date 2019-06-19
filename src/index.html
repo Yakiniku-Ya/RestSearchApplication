@@ -26,27 +26,26 @@
             </div>
             <div v-else>
                 <h2>Result ({{ result.data.total_hit_count }})</h2>
-                    <div class="element" v-for="element in results">
-                        
-                        <div class="thumbnail">
-                            <img v-if=element.image.shop_image1 :src="element.image.shop_image1" alt="shop_image">
-                            <img v-else src="./images/no_image.png" alt="shop_image">
-                        </div>
-                        <div id="content">
-                            <span class="shop_name">{{ element.name }}</span><br>
-                            <span class="shop_address">店舗住所：{{ element.address }}</span><br>
-                            <span class="shop_access">アクセス：<span
-                                >{{ element.access.line }}{{ element.access.station}}</span
-                                ><span v-if="element.access.station_exit">({{ element.access.station_exit }})</span
-                                >から{{ element.access.walk }}分</span><br>
-                            <span class="shop_category">カテゴリ：{{ element.category }}</span>
-                        </div>
+                    <div id="elements">
+                        <div id="element" v-for="element in results">
+                            
+                            <div class="thumbnail">
+                                <img v-if=element.image.shop_image1 :src="element.image.shop_image1" alt="shop_image">
+                                <img v-else src="./images/no_image.png" alt="shop_image">
+                            </div>
 
-                        <!--
-                            検索設定の保存をしたい
-                            ?range=3&id=xxxx&keyword=keyみたいな感じでいけるか？
-                        -->
-                        <a id="link" :href="'./detail.html?id=' + element.id"></a>
+                            <div class="content">
+                                <span class="shop_name">{{ element.name }}</span>
+                                <span class="category">({{ element.category}})</span><br>
+                                <span class="shop_address">{{ element.address }}</span><br>
+                                <span class="shop_access"><span
+                                    >{{ element.access.line }}{{ element.access.station}}</span
+                                    ><span v-if="element.access.station_exit">({{ element.access.station_exit }})</span
+                                    >から{{ element.access.walk }}分</span>
+                            </div>
+
+                            <a class="link" :href="'./detail.html?id=' + element.id"></a>
+                        </div>
                     </div>
             </div>
             <div id="paging">

@@ -18,6 +18,10 @@
                     <span class="kana">{{ result.name_kana }}</span><br>
                     <hr>
                     <article>
+                        <div id="pr" v-if="result.pr.pr_short">
+                            <h3>{{ result.pr.pr_short}}</h3>
+                            <p>{{ result.pr.pr_long }}</p>
+                        </div>
                         <div id="info">
                             <h3>基本情報</h3>
                             <table id="info">
@@ -61,11 +65,10 @@
                                     </tr>
                             </table>
                         </div>
-                        <div id="contents">
-                            <div id=""></div>
-                            <div class="link"><a :href=result.url>&laquo;ぐるなびで見る&raquo;</a></span>
-                        </div>
                     </article>
+                    <div id="link">
+                        <a :href=result.url>ぐるなびで見る</a>
+                    </div>
                 </div>
                 <a href="./index.html">Back to Home.</a>
                 <footer>
