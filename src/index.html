@@ -1,5 +1,6 @@
 <html>
     <head>
+            <title>RestaurantSearch</title>
         <link rel="stylesheet" href="./styles/style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
@@ -53,7 +54,9 @@
                 {{ page + 1 }} / {{ pages }}
                 <span @click="nextPage">next</span>
             </div>
-            <span v-if="message">{{message}}</span>
+            <footer>
+                Supported by <a href="https://api.gnavi.co.jp/api/scope/" target="_blank">ぐるなびWebService</a>
+            </footer>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>

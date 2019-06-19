@@ -24,7 +24,9 @@ const detail = new Vue({
                 .then(response => {
                     this.error_message = '';
                     const result = response.data.rest[0];
-                    this.result = result;
+                    this.result = result;   
+                    this.latitude = latitude;
+                    this.longitude = longitude;
                 })
                 .catch(error => {
                     const code = Number(error.toString().slice(-3));

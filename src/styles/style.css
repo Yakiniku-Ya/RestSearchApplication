@@ -51,7 +51,7 @@ div#content .shop_name {
     font-weight: bold;
 }
 
-#link {
+div.element #link {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -83,6 +83,7 @@ div#header h2 {
 div#header .image {
     background-color: #eeeeee;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 div#header img {
@@ -99,20 +100,66 @@ div#header .kana {
     font-size: 10px;
 }
 
-ul#status {
-    margin: 5px 5px;
-    padding-left: 0;
+div#header article {
+    display: flex;
 }
 
-ul#status li {
-    list-style: none;
+div#header .heads hr {
+    border-top: solid 5px #555555;
+    border-radius: 2px;
 }
 
-ul#status .title {
-    font-size: 20px;
-    font-weight: bold;
+div#contents {
+    text-align: center;
+    flex-basis: 50%;
+    width: 100%;
 }
 
-ul#status span {
-    vertical-align: middle;
+div#contents .link {
+    display: inline-block;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    padding: 5px 50px;
+    cursor: pointer;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    transition: .3s ease-out;
+}
+
+div#contents .link a {
+    text-decoration: none;
+    color: black;
+}
+
+div#contents .link:hover{
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+}
+
+div#info {
+    flex-basis: 50%;
+}
+
+div#info h3 {
+    margin: 5px;
+}
+
+table#info {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: solid 2px #aaaaaa;
+}
+
+table#info th, td {
+    padding: 5px;
+    border-top: solid 1px #cccccc;
+}
+
+div#leafletmap {
+    width: 100%;
+    height: 300px;
+}
+
+footer {
+    text-align: center;
 }
