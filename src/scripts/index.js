@@ -16,12 +16,9 @@ const main = new Vue({
             {text: '2km', value: '4'},
             {text: '3km', value: '5'}
         ],
-        req: '',
-        message: '',
         error_message: '',
         result: [],
-        results: [],
-        values: []
+        results: []
     },
     mounted () {
         this.restSearch();
@@ -123,8 +120,7 @@ const main = new Vue({
         },
 
         nextPage: function () {
-            // 16 16
-            if (this.page + 1 >= this.pages) {
+            if (this.pages <= this.page + 1) {
                 return;
             }
             this.page += 1;
