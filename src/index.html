@@ -14,12 +14,6 @@
                 <h3>SEARCH SETTINGS</h3>
                 <table class="settings">
                     <tr>
-                        <th>キーワード</th>
-                        <td>
-                            <input class="keyword" type="text">
-                        </td>
-                    </tr>
-                    <tr>
                         <th>半径</th>
                         <td>
                             <select v-model="selected">
@@ -27,6 +21,16 @@
                                     {{ option.text }}
                                 </option>
                             </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>キーワード</th>
+                        <td>
+                            <input 
+                                class="keyword" 
+                                v-model="freeword" 
+                                placeholder="keyword"
+                                type="text">
                         </td>
                     </tr>
                 </div>
