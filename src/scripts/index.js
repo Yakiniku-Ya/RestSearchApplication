@@ -42,7 +42,7 @@ const main = new Vue({
                 })
                 .then(response => {
                     this.error_message = '';
-                    this.pages = Math.ceil(Number(response.data.total_hit_count)/10);
+                    this.pages = Math.ceil(Number(response.data.total_hit_count)/30);
                     this.result = response;
                     const results = response.data.rest;
                     for (let i = 0; i < results.length; i++) {
@@ -111,7 +111,7 @@ const main = new Vue({
         },
 
         prevPage: function () {
-            if (0 <= this.page) {
+            if (0 >= this.page) {
                 return;
             }
             this.page -= 1;

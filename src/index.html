@@ -31,7 +31,7 @@
                             
                             <div class="thumbnail">
                                 <img v-if=element.image.shop_image1 :src="element.image.shop_image1" alt="shop_image">
-                                <img v-else src="./images/no_image.png" alt="shop_image">
+                                <img v-else src="./images/no_image.png" alt="NO IMAGE">
                             </div>
 
                             <div class="content">
@@ -53,9 +53,10 @@
                 {{ page + 1 }} / {{ pages }}
                 <span @click="nextPage">next</span>
             </div>
-            <footer>
+            <div id="footer">
                 Supported by <a href="https://api.gnavi.co.jp/api/scope/" target="_blank">ぐるなびWebService</a>
-            </footer>
+                
+            </div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
