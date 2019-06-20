@@ -1,23 +1,37 @@
 <html>
     <head>
-            <title>RestaurantSearch</title>
+        <title>RestaurantSearch</title>
         <link rel="stylesheet" href="./styles/style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
     <body>
-        <div id=form>
-            <div id="top">
-                <h1><a href="./index.html">RestaurantSearch with GnaviAPI</a></h1>
-            </div>
-            <h2>Search Settings</h2>
-            <form>
-                Range: 
-                <select v-model="selected">
-                    <option v-for="option in options" v-bind:value="option.value">
-                        {{ option.text }}
-                    </option>
-                </select>
-                <button type="button" @click="submit">Search</button>
+        <div id="top">
+            <h1><a href="./index.html"><div class="material-icons">fastfood</div> RestSearch with GnaviAPI</a></h1>
+        </div>
+        <div id="main">
+            <form id="form">
+                <h3>SEARCH SETTINGS</h3>
+                <table class="settings">
+                    <tr>
+                        <th>キーワード</th>
+                        <td>
+                            <input class="keyword" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>半径</th>
+                        <td>
+                            <select v-model="selected">
+                                <option v-for="option in options" v-bind:value="option.value">
+                                    {{ option.text }}
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                </div>
+                </table>
+                <div class="search_button"><span @click="submit">SEARCH</span></div>
             </form>
             <div v-if="error_message">
                 <p>
@@ -25,28 +39,27 @@
                 </p>
             </div>
             <div v-else>
-                <h2>Result ({{ result.data.total_hit_count }})</h2>
-                    <div id="elements">
-                        <div id="element" v-for="element in results">
+                <div id="elements">
+                    <div id="element" v-for="element in results">
                             
-                            <div class="thumbnail">
-                                <img v-if=element.image.shop_image1 :src="element.image.shop_image1" alt="shop_image">
-                                <img v-else src="./images/no_image.png" alt="NO IMAGE">
-                            </div>
-
-                            <div class="content">
-                                <span class="shop_name">{{ element.name }}</span>
-                                <span class="category">({{ element.category}})</span><br>
-                                <span class="shop_address">{{ element.address }}</span><br>
-                                <span class="shop_access"><span
-                                    >{{ element.access.line }}{{ element.access.station}}</span
-                                    ><span v-if="element.access.station_exit">({{ element.access.station_exit }})</span
-                                    >から{{ element.access.walk }}分</span>
-                            </div>
-
-                            <a class="link" :href="'./detail.html?id=' + element.id"></a>
+                        <div class="thumbnail">
+                            <img v-if=element.image.shop_image1 :src="element.image.shop_image1" alt="shop_image">
+                            <img v-else src="./images/no_image.png" alt="NO IMAGE">
                         </div>
+
+                        <div class="content">
+                            <span class="shop_name">{{ element.name }}</span>
+                            <span class="category">({{ element.category}})</span><br>
+                            <span class="shop_address">{{ element.address }}</span><br>
+                            <span class="shop_access"><span
+                                >{{ element.access.line }}{{ element.access.station}}</span
+                                ><span v-if="element.access.station_exit">({{ element.access.station_exit }})</span
+                                >から{{ element.access.walk }}分</span>
+                        </div>
+
+                        <a class="link" :href="'./detail.html?id=' + element.id"></a>
                     </div>
+                </div>
             </div>
             <div id="paging">
                 <span @click="prevPage">prev</span> 
@@ -55,7 +68,6 @@
             </div>
             <div id="footer">
                 Supported by <a href="https://api.gnavi.co.jp/api/scope/" target="_blank">ぐるなびWebService</a>
-                
             </div>
         </div>
 
