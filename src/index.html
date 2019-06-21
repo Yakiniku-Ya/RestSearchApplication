@@ -55,10 +55,10 @@
                             <span class="shop_name">{{ element.name }}</span>
                             <span class="category">({{ element.category}})</span><br>
                             <span class="shop_address">{{ element.address }}</span><br>
-                            <span class="shop_access"><span
-                                >{{ element.access.line }}{{ element.access.station}}</span
-                                ><span v-if="element.access.station_exit">({{ element.access.station_exit }})</span
-                                >から{{ element.access.walk }}分</span>
+                            <span class="shop_access">
+                                <span v-if="element.access.line">{{ element.access.line }}{{ element.access.station}}</span>
+                                <span v-if="element.access.station_exit">({{ element.access.station_exit }})</span>
+                                <span v-if="element.access.walk">から{{ element.access.walk }}分</span>
                         </div>
 
                         <a class="link" :href="'./detail.html?id=' + element.id"></a>
