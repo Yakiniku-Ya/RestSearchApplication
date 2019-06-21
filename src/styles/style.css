@@ -110,14 +110,20 @@ body {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
+div#result {
+    max-width: 75%;
+    margin: 0 auto;
+}
+
 div#elements {
     display: flex;
+    width: 100%;
     border: 0 auto;
     text-align: center;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    align-content: space-around;
+    align-content: space-between;
     position: relative;
 }
 
