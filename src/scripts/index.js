@@ -33,6 +33,7 @@ const main = new Vue({
                 this.getLocation();
             } else {
                 if (this.selected == '') {
+                    // 半径指定なしの選択ではlatitudeとかlongitudeつけたらおこられる X(
                     this.restSearch(
                         {
                             keyid: key,
@@ -42,6 +43,9 @@ const main = new Vue({
                         }
                     );
                 } else {
+                    // 検索タイミングごとのリアルタイムな位置情報の取得
+                    this.getLocation();
+                    // 半径指定をした状態でのレストラン検索（freeword検索可能）
                     this.restSearch(
                         {
                             keyid: key,
