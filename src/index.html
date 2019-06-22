@@ -37,12 +37,14 @@
                 </table>
                 <div class="search_button"><span @click="submit">SEARCH</span></div>
             </form>
-            <div v-if="error_message">
-                <p>
-                    {{ error_message }}
-                </p>
+            <div id="error_message" v-if="error_message">
+                <div class="material-icons">error_outline</div>
+                <div class="error_content">
+                    <h2 class="error_title">Error:{{ error.message }}</h2>
+                    <p>{{ error_message }}</p>
+                </div>
             </div>
-            <div v-else id="result">
+            <div id="result" v-else>
                 <div id="elements">
                     <div id="element" v-for="element in results">
                             

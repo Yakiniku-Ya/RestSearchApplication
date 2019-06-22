@@ -21,6 +21,7 @@ const main = new Vue({
         ],
         error_message: '',
         result: [],
+        error: [],
         results: []
     },
     mounted () {
@@ -67,12 +68,13 @@ const main = new Vue({
                     var message = '';
                     switch (error.code) {
                         case 1: 
-                            message = 'ブラウザの位置情報の利用を許可してください。'; break;
+                            message = 'ブラウザまたは端末の位置情報の利用を許可してください。'; break;
                         case 2: 
                             message = '端末の位置を判定できません。'; break;
                         case 3:
                             message = 'リクエストがタイムアウトしました。'; break;
                     }
+                    main.error = error;
                     main.error_message = message;
                 }
             )
@@ -146,6 +148,7 @@ const main = new Vue({
                     }
                     this.page = 0;
                     this.pages = 1;
+                    this.error = error;
                     this.error_message = message;
                 })
             
