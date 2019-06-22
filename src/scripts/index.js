@@ -2,6 +2,14 @@ const url = "https://api.gnavi.co.jp/RestSearchAPI/v3/"
 // const key = "6526d105b1d4506fdb09b7d64afa244b"
 const key = "578f48400166717797a5f1da5f50e583"
 
+document.onkeypress = function(e){
+    var ref=e.target;
+    if (e.key === 'Enter' && ref.type == 'text'){
+        main.submit();
+        return false;
+    }
+}
+
 const main = new Vue({
     el: '#main',
     data: {
