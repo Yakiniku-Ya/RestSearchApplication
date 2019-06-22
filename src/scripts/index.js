@@ -51,8 +51,6 @@ const main = new Vue({
                         }
                     );
                 } else {
-                    // 検索タイミングごとのリアルタイムな位置情報の取得
-                    this.getLocation();
                     // 半径指定をした状態でのレストラン検索（freeword検索可能）
                     this.restSearch(
                         {
@@ -119,11 +117,13 @@ const main = new Vue({
         },
         
         restSearch: function (params)  {
+            console.log('requested!');
             axios
                 .get(url, {
                     params: params
                 })
                 .then(response => {
+                    console.log('get response!');
                     this.error_message = '';
                     this.pages = Math.ceil(Number(response.data.total_hit_count)/30);
                     this.result = response;
