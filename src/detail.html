@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="./styles/detail.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="icon" href="./images/favicon.ico">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
     <body>
@@ -12,11 +13,10 @@
             <h1><a href="./index.html"><div class="material-icons">fastfood</div> RestSearch with GnaviAPI</a></h1>
         </div>
         <div id=detail>
-            <div id="header">
-                <div class="image">
+                <div id="image">
                     <img v-if="result.image_url.shop_image1" :src="result.image_url.shop_image1" alt="shop_image1">
                 </div>
-                <div class="heads">
+                <div id="heads">
                     <h2 class="name">{{ result.name }}</h2>
                     <span class="kana">{{ result.name_kana }}</span><br>
                     <hr>
@@ -27,7 +27,7 @@
                         </div>
                         <div id="info">
                             <h3>基本情報</h3>
-                            <table id="info">
+                            <table>
                                     <tr>
                                         <th><span class="title">住所</span></th>
                                         <td>
@@ -72,7 +72,6 @@
                     <div id="link">
                         <a :href=result.url>ぐるなびで見る</a>
                     </div>
-                </div>
                 <div id="footer">
                     Supported by <a href="https://api.gnavi.co.jp/api/scope/" target="_blank">ぐるなびWebService</a>
                 </div>

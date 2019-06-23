@@ -5,15 +5,16 @@
         <link rel="stylesheet" href="./styles/main.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="icon" href="./images/favicon.ico">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
     <body>
         <div id="top">
-            <h1><a href="./index.html"><div class="material-icons">fastfood</div> RestSearch with GnaviAPI</a></h1>
+            <h1><a href="./index.html"><div class="material-icons">fastfood</div> <span>RestSearchApplication</span></a></h1>
         </div>
         <div id="main">
             <form id="form">
-                <h3>SEARCH SETTINGS</h3>
+                <h3>レストラン検索設定</h3>
                 <table class="settings">
                     <tr>
                         <th>半径</th>
@@ -37,7 +38,7 @@
                     </tr>
                 </div>
                 </table>
-                <div class="search_button"><span @click="submit">SEARCH</span></div>
+                <div class="search_button"><span @click="submit">検索</span></div>
             </form>
             <div id="error_message" v-if="error_message">
                 <div class="material-icons">error_outline</div>
@@ -56,9 +57,7 @@
                         </div>
 
                         <div class="content">
-                            <span class="shop_name">{{ element.name }}</span>
-                            <span class="category">({{ element.category}})</span><br>
-                            <span class="shop_address">{{ element.address }}</span><br>
+                            <span class="shop_name">{{ element.name }}</span><br>
                             <span class="shop_access">
                                 <span v-if="element.access.line">{{ element.access.line }}{{ element.access.station}}</span>
                                 <span v-if="element.access.station_exit">({{ element.access.station_exit }})</span>
@@ -70,9 +69,9 @@
                 </div>
             </div>
             <div id="paging">
-                <span @click="prevPage">prev</span> 
+                <span @click="prevPage">前のページ</span> 
                 {{ page + 1 }} / {{ pages }}
-                <span @click="nextPage">next</span>
+                <span @click="nextPage">次のページ</span>
             </div>
             <div id="footer">
                 Supported by <a href="https://api.gnavi.co.jp/api/scope/" target="_blank">ぐるなびWebService</a>

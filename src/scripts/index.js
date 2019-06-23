@@ -33,7 +33,7 @@ const main = new Vue({
         results: []
     },
     mounted () {
-        this.searchHandler();
+        this.getLocation();
     },
     methods: {
         searchHandler: function () {
@@ -72,7 +72,6 @@ const main = new Vue({
                 function(position) {
                     main.latitude = position.coords.latitude;
                     main.longitude = position.coords.longitude;
-                    main.searchHandler();
                 },
                 function(error) {
                     var message = '';

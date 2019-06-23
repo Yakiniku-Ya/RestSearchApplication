@@ -1,41 +1,44 @@
 #detail {
     padding-top: 80px;
-}
-
-div#header {
     position: relative;
     align-items: center;
-    margin: 5px 0;
+    margin: 5px auto;
     display: block;
 }
 
-div#header .image {
+#image {
     background-color: #eeeeee;
     text-align: center;
     margin: 10px 10px;
 }
 
-div#header .image img {
+#image img {
     max-height: 300px;
 }
 
-div#header .heads {
+#heads {
     margin: 0 10px;
     align-self: flex-start;
 }
 
-div#header .name {
+#heads .name {
     text-align: left;
     font-size: 25px;
     margin: 0 5px;
 }
 
-div#header .kana {
+#heads .kana {
     margin: 0 5px;
     font-size: 10px;
 }
 
-div#header article {
+#heads .heads hr {
+    border-top: solid 5px #555555;
+    border-radius: 2px;
+    margin: 5px 0;
+}
+
+#heads article {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
@@ -43,53 +46,47 @@ div#header article {
     align-content: space-around;
 }
 
-div#header .heads hr {
-    border-top: solid 5px #555555;
-    border-radius: 2px;
+#heads article h3 {
     margin: 5px 0;
 }
 
-div#header article h3 {
-    margin: 5px 0;
-}
-
-div#pr {
+#pr {
     flex-basis: 50%;
     margin: 5px 0;
 }
 
-div#info {
+#info {
     flex-basis: 50%;
     margin: 0 5px;
 }
 
-table#info {
+#info {
     width: 100%;
     height: auto;
     border-collapse: collapse;
     border-top: solid 2px #aaa;
 }
 
-table#info th, table#info td {
+#info table th, #info table td {
     padding: 5px;
     border-top: solid 1px #ccc;
 }
 
-table#info td {
+#info table td {
     width: 20%;
 }
 
-table#info td {
+#info table td {
     width: 80%;
 }
 
-div#link {
+#link {
     text-align: center;
     width: 100%;
     margin: 20px 0;
 }
 
-div#link a {
+#link a {
     display: inline-block;
     margin: 0 auto;
     background-color: white;
@@ -103,6 +100,6 @@ div#link a {
     color: black;
 }
 
-div#link a:hover {
+#link a:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
