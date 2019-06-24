@@ -39,15 +39,14 @@
 }
 
 #heads article {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-    align-items: space-around;
-    align-content: space-around;
+    display: block;
+    position: relative;
 }
 
 #heads article h3 {
     margin: 5px 0;
+    text-align: center;
+    border-bottom: #555555;
 }
 
 #pr {
@@ -102,4 +101,23 @@
 
 #link a:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+/* 1024px~ : pc向けデザイン */
+@media screen and (min-width:1024px) {
+    #detail {
+        width: 900px;
+    }
+}
+
+/* 768px~1024px : タブレット向けデザイン */
+@media screen and (min-width:768px) and ( max-width:1023px) {
+    #detail {
+        width: 600px;
+    }
+}
+
+/* ~768px : スマホ向けデザイン */
+@media screen and (max-width:767px) {
+    
 }
