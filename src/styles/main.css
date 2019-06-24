@@ -311,9 +311,8 @@
     }
 
     #element .thumbnail img {
-        max-width: 100px;
-        max-height: 100px;
-        width: 100;
+        min-height: 100px;
+        width: 100px;
         height: auto;
     }
 
