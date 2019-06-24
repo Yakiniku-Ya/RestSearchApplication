@@ -299,13 +299,15 @@
         display: flex;
         align-items: flex-start;
         margin: 5px 0;
-        height: 106px;
+        height: auto;
+        min-height: 106px;
+        max-height: 200px;
     }
 
     #element .thumbnail {
         margin: 2px;
         border: solid 1px #cbcbcb;
-        align-self: stretch;
+        align-self: center;
         width: 100px;
         height: 100px;
         background-color: #cbcbcb;
@@ -314,16 +316,19 @@
     #element .thumbnail img {
         width: 100px;
         height: 100%;
+        max-height: 100px;
     }
 
     #element .content {
         width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
 
     #element .content .shop_name {
         font-size: 16px;
+    }
+
+    #element .content .shop_access {
+        font-size: 14px;
     }
 
     #paging span {
