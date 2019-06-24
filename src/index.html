@@ -59,9 +59,7 @@
                         <div class="content">
                             <span class="shop_name">{{ element.name }}</span><br>
                             <span class="shop_access">
-                                <span v-if="element.access.line">{{ element.access.line }}{{ element.access.station}}</span>
-                                <span v-if="element.access.station_exit">({{ element.access.station_exit }})</span>
-                                <span v-if="element.access.walk">から{{ element.access.walk }}分</span>
+                                <span v-if="element.access.line">{{ element.access.line }}</span><span v-if="element.access.station">{{ element.access.station }}</span><span v-if="element.access.station_exit">({{ element.access.station_exit }})</span><span v-if="element.access.walk">から{{ element.access.walk }}分</span>
                         </div>
 
                         <a class="link" :href="'./detail.html?id=' + element.id"></a>
