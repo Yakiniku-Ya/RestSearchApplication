@@ -7,7 +7,6 @@
 }
 
 #image {
-    background-color: #eeeeee;
     text-align: center;
     margin: 10px 10px;
 }
@@ -109,13 +108,53 @@
 @media screen and (min-width:1024px) {
     #detail {
         width: 900px;
+        background-color: #fcfcfc;
+    }
+
+    #image {
+        padding: 0;
+        margin: 10px 0;
+    }
+
+    #image img.back {
+        max-width: 900px;
+        width: auto;
+        height: 600px;
+    }
+
+    #image img.noimg {
+        height: 0;
+    }
+
+    #image #bottoms {
+        display: none;
     }
 }
 
 /* 768px~1024px : タブレット向けデザイン */
 @media screen and (min-width:768px) and ( max-width:1023px) {
     #detail {
-        width: 600px;
+        width: 900px;
+        background-color: #fcfcfc;
+    }
+
+    #image {
+        padding: 0;
+        margin: 10px 0;
+    }
+
+    #image img.back {
+        max-width: 900px;
+        width: auto;
+        height: 600px;
+    }
+
+    #image img.noimg {
+        height: 0;
+    }
+
+    #image #bottoms {
+        display: none;
     }
 }
 
