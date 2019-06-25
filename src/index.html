@@ -49,7 +49,7 @@
                     <tr>
                         <th>半径</th>
                         <td>
-                            <select v-model="range">
+                            <select v-model="range" @change="saveSessionStorage">
                                 <option v-for="range in ranges" v-bind:value="range.value">
                                     {{ range.text }}
                                 </option>
@@ -63,7 +63,8 @@
                                 class="keyword" 
                                 v-model="freeword" 
                                 placeholder="例) 名古屋 味噌カツ"
-                                type="text">
+                                type="text"
+                                @input="saveSessionStorage">
                         </td>
                     </tr>
                 </div>

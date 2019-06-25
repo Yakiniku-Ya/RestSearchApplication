@@ -30,7 +30,7 @@ const main = new Vue({
         states: [
             {text: '指定しない', value: ''}
         ],
-        range: '',
+        range: '2',
         ranges: [
             {text: '指定しない', value: ''},
             {text: '300m', value: '1'},
@@ -47,6 +47,7 @@ const main = new Vue({
     mounted () {
         this.getLocation();
         this.getAreaCode();
+        this.loadSessionStorage();
     },
     methods: {
         getAreaCode: function () {
@@ -170,6 +171,7 @@ const main = new Vue({
                         }
                     );
                 }
+                this.saveSessionStorage();
             }
         },
 
@@ -178,6 +180,8 @@ const main = new Vue({
                 function(position) {
                     main.latitude = position.coords.latitude;
                     main.longitude = position.coords.longitude;
+                    // 再検索
+                    main.searchHandler();
                 },
                 function(error) {
                     var message = '';
@@ -193,6 +197,42 @@ const main = new Vue({
                     main.error_message = message;
                 }
             )
+        },
+
+    /* 
+        セッションストレージに検索データを保存
+        呼び出しタイミングはrangeを選択したとき、freewordを入力したとき、検索完了したとき、ページを切り替えたとき
+        parameter
+            なし
+        return
+            なし
+    */
+        saveSessionStorage: function () {
+            sessionStorage.range = this.range;
+            sessionStorage.freeword = this.freeword;
+            sessionStorage.page = this.page;
+        },
+
+    /* 
+        セッションストレージに残っているデータの読み出しを行う
+        呼び出しタイミングはmainVueの読み込み時のみ
+        parameter
+            なし
+        return
+            なし
+    */
+        loadSessionStorage: function () {
+            if (sessionStorage.getItem('range')) {
+                this.range = sessionStorage.getItem('range');
+            }
+            if (sessionStorage.getItem('freeword')) {
+                this.freeword = sessionStorage.getItem('freeword');
+            }
+            if (sessionStorage.getItem('page')) {
+                this.page = Number(sessionStorage.getItem('page'));
+            }
+            // 再検索
+            this.searchHandler();
         },
 
         submit: function () {
