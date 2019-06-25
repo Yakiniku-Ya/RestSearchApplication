@@ -18,7 +18,7 @@ const main = new Vue({
         page: 0,
         pages: 1,
         freeword: '',
-        range: '',
+        range: '2',
         ranges: [
             {text: '指定しない', value: ''},
             {text: '300m', value: '1'},
