@@ -7,7 +7,10 @@ const detail = new Vue({
     data: {
         id: '',
         error_message: '',
-        result: []
+        result: [],
+        image_url: [],
+        pr: [],
+        access: []
     },
     mounted () {
         this.restSearch();
@@ -26,8 +29,9 @@ const detail = new Vue({
                     this.error_message = '';
                     const result = response.data.rest[0];
                     this.result = result;   
-                    this.latitude = latitude;
-                    this.longitude = longitude;
+                    this.image_url = result.image_url;
+                    this.pr = result.pr;
+                    this.access = result.access;
                 })
                 .catch(error => {
                     const code = Number(error.toString().slice(-3));

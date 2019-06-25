@@ -10,62 +10,71 @@
     </head>
     <body>
         <div id="top">
-            <h1><a href="./index.html"><div class="material-icons">fastfood</div> RestSearch with GnaviAPI</a></h1>
+            <h1><a href="./index.html"><div class="material-icons">fastfood</div> <span>RestSearchApplication</span></a></h1>
         </div>
         <div id=detail>
                 <div id="image">
-                    <img v-if="result.image_url.shop_image1" :src="result.image_url.shop_image1" alt="shop_image1">
+                    <img class="back" v-if="image_url.shop_image2" :src="image_url.shop_image2">
+                    <img class="back" v-else-if="image_url.shop_image1" :src="image_url.shop_image1">
+                    <img class="noimg" v-else>
+                    <div id="bottoms">
+                        <img class="icon" v-if="image_url.shop_image1" :src="image_url.shop_image1">
+                        <!-- いらない気がする
+                        <img class="icon" v-else src="./images/no_image.png" alt="icon">
+                        -->
+                        <div id="names">
+                            <h2 class="name">{{ result.name }}</h2>
+                            <span class="kana">{{ result.name_kana }}</span>
+                        </div>
+                    </div>
                 </div>
                 <div id="heads">
                     <h2 class="name">{{ result.name }}</h2>
-                    <span class="kana">{{ result.name_kana }}</span><br>
+                    <span class="kana">{{ result.name_kana }}</span>
                     <hr>
                     <article>
-                        <div id="pr" v-if="result.pr.pr_short">
-                            <h3>{{ result.pr.pr_short}}</h3>
-                            <p>{{ result.pr.pr_long }}</p>
+                        <div id="pr" v-if="pr.pr_short">
+                            <h3>{{ pr.pr_short }}</h3>
+                            <p>{{ pr.pr_long }}</p>
                         </div>
                         <div id="info">
-                            <h3>基本情報</h3>
                             <table>
-                                    <tr>
-                                        <th><span class="title">住所</span></th>
-                                        <td>
-                                            <span class="address" v-if="result.address">{{ result.address }}</span>
-                                            <span v-else>No Data.</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="title">アクセス</span></th>
-                                        <td>
-                                            <span class="access">
-                                                <span>{{ result.access.line }}{{ result.access.station}}</span
-                                                ><span v-if="result.access.station_exit">({{ result.access.station_exit }})</span
-                                                >から{{ result.access.walk }}分
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="title">電話番号</span></th>
-                                        <td>
-                                            <span class="tel" v-if="result.tel">{{ result.tel }}</span>
-                                            <span v-else>No Data X(</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="title">営業時間</span></th>
-                                        <td>
-                                            <span class="opentime" v-if="result.opentime">{{ result.opentime }}</span>
-                                            <span v-else>No Data X(</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th><span class="title">休業日</span></th>
-                                        <td>
-                                            <span class="holiday" v-if="result.holiday"> {{ result.holiday }}</span>
-                                            <span v-else>No Data X(</span>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <th><span class="title">住所</span></th>
+                                    <td>
+                                        <span class="address" v-if="result.address">{{ result.address }}</span>
+                                        <span v-else>No Data.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="title">アクセス</span></th>
+                                    <td>
+                                        <span class="access">
+                                            <span v-if="access.line">{{ access.line }}</span><span v-if="access.station">{{ access.station }}</span><span v-if="access.station_exit">({{ result.access.station_exit }})</span><span v-if="access.walk">から{{ result.access.walk }}分</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="title">電話番号</span></th>
+                                    <td>
+                                        <span class="tel" v-if="result.tel">{{ result.tel }}</span>
+                                        <span v-else>No Data X(</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="title">営業時間</span></th>
+                                    <td>
+                                        <span class="opentime" v-if="result.opentime">{{ result.opentime }}</span>
+                                        <span v-else>No Data X(</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="title">休業日</span></th>
+                                    <td>
+                                        <span class="holiday" v-if="result.holiday"> {{ result.holiday }}</span>
+                                        <span v-else>No Data X(</span>
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                     </article>

@@ -19,9 +19,9 @@
                     <tr>
                         <th>半径</th>
                         <td>
-                            <select v-model="selected">
-                                <option v-for="option in options" v-bind:value="option.value">
-                                    {{ option.text }}
+                            <select v-model="range">
+                                <option v-for="range in ranges" v-bind:value="range.value">
+                                    {{ range.text }}
                                 </option>
                             </select>
                         </td>
@@ -32,7 +32,7 @@
                             <input 
                                 class="keyword" 
                                 v-model="freeword" 
-                                placeholder="キーワードを入力してください。"
+                                placeholder="例) 名古屋 味噌カツ"
                                 type="text">
                         </td>
                     </tr>
@@ -59,9 +59,7 @@
                         <div class="content">
                             <span class="shop_name">{{ element.name }}</span><br>
                             <span class="shop_access">
-                                <span v-if="element.access.line">{{ element.access.line }}{{ element.access.station}}</span>
-                                <span v-if="element.access.station_exit">({{ element.access.station_exit }})</span>
-                                <span v-if="element.access.walk">から{{ element.access.walk }}分</span>
+                                <span v-if="element.access.line">{{ element.access.line }}</span><span v-if="element.access.station">{{ element.access.station }}</span><span v-if="element.access.station_exit">({{ element.access.station_exit }})</span><span v-if="element.access.walk">から{{ element.access.walk }}分</span>
                         </div>
 
                         <a class="link" :href="'./detail.html?id=' + element.id"></a>

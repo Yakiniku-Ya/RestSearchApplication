@@ -28,7 +28,6 @@ html {
 }
 
 body {
-    margin: 5px;
     padding: 0;
 }
 
@@ -48,6 +47,10 @@ body {
         margin-top: 20px;
         padding: 5px 20px;
     }
+
+    #body {
+        margin: 5px;
+    }
 }
 
 /* 768px~1024px : タブレット向けデザイン */
@@ -56,10 +59,18 @@ body {
         margin-top: 20px;
         padding: 5px 20px;
     }
+
+    #body {
+        margin: 5px;
+    }
 }
 
 /* ~768px : スマホ向けデザイン */
 @media screen and (max-width:767px) {
+    * {
+        margin: 0px;
+    }
+
     #top h1 {
         margin: 0;
         padding: 2px 4px;
@@ -70,7 +81,18 @@ body {
         top: 3px;
     }
 
-    #top h1 span{
+    #top h1 span {
         font-size: 24px;
+    }
+
+    #footer {
+        display: block;
+        position: relative;
+        text-align: center;
+        font-size: 14px;
+        width: 100%;
+        bottom: 0;
+        padding: 10px 5px;
+        border-top: solid 1px #5c5c5c;
     }
 }

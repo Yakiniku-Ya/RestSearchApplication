@@ -7,7 +7,6 @@
 }
 
 #image {
-    background-color: #eeeeee;
     text-align: center;
     margin: 10px 10px;
 }
@@ -39,15 +38,13 @@
 }
 
 #heads article {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-    align-items: space-around;
-    align-content: space-around;
+    display: block;
+    position: relative;
 }
 
-#heads article h3 {
+#pr h3 {
     margin: 5px 0;
+    border-bottom: #555555;
 }
 
 #pr {
@@ -63,8 +60,12 @@
 #info {
     width: 100%;
     height: auto;
+}
+
+#info table {
+    margin: 0 auto;
     border-collapse: collapse;
-    border-top: solid 2px #aaa;
+    border-bottom: solid 1px #ccc;
 }
 
 #info table th, #info table td {
@@ -102,4 +103,142 @@
 
 #link a:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+/* 1024px~ : pc向けデザイン */
+@media screen and (min-width:1024px) {
+    #detail {
+        width: 900px;
+        background-color: #fcfcfc;
+    }
+
+    #image {
+        padding: 0;
+        margin: 10px 0;
+    }
+
+    #image img.back {
+        max-width: 900px;
+        width: auto;
+        height: 600px;
+    }
+
+    #image img.noimg {
+        height: 0;
+    }
+
+    #image #bottoms {
+        display: none;
+    }
+}
+
+/* 768px~1024px : タブレット向けデザイン */
+@media screen and (min-width:768px) and ( max-width:1023px) {
+    #detail {
+        width: 900px;
+        background-color: #fcfcfc;
+    }
+
+    #image {
+        padding: 0;
+        margin: 10px 0;
+    }
+
+    #image img.back {
+        max-width: 900px;
+        width: auto;
+        height: 600px;
+    }
+
+    #image img.noimg {
+        height: 0;
+    }
+
+    #image #bottoms {
+        display: none;
+    }
+}
+
+/* ~768px : スマホ向けデザイン */
+@media screen and (max-width:767px) {
+
+    #detail {
+        padding-top: 25px;
+        margin: 0;
+    }
+
+    #image {
+        position: relative;
+        padding: 0;
+        margin: 0;
+        background-color: rgb(100, 15, 0);
+    }
+
+    #image img.back {
+        width: 100%;
+        height: 200px;
+        opacity: 0.5;
+        filter: blur(2px);
+    }
+
+    #image img.noimg {
+        min-height: 50px;
+        height: auto;
+        padding: 5px;
+    }
+
+    #bottoms {
+        display: flex;
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        width: 100%;
+        height: 80px;
+    }
+
+    #bottoms img.icon {
+        flex-basis: 80px;
+        width: 80px;
+        height: auto;
+        max-height: 80px;
+    }
+
+    #names  {
+        margin: 0 5px;
+        margin-top: auto;
+        text-align: left;
+        color: white;
+    }
+
+    #names h2.name {
+        font-size: 16px;
+    }
+
+    #names span.kana {
+        font-size: 7px;
+    }
+
+    #heads h2.name, #heads span.kana, #heads hr {
+        display: none;
+    }
+
+    #pr {        
+        text-align: left;
+    }
+
+    #pr h3 {
+        font-size: 14px;
+    } 
+
+    #pr p {
+        font-size: 12px;
+    }
+
+    #info th, #info td {
+        font-size: 12px;
+    }
+
+    #link a {
+        font-size: 14px;
+    }
 }
