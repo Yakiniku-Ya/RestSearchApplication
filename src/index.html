@@ -43,16 +43,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>地域</th>
-                        <td>
-                            <select v-model="state">
-                                <option v-for="state in states" v-bind:value="state.value">
-                                    {{ state.text }}
-                                </option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
                         <th>半径</th>
                         <td>
                             <select v-model="range" @change="saveSessionStorage">

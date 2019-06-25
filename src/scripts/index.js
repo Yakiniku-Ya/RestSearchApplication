@@ -56,7 +56,6 @@ const main = new Vue({
         this.loadSessionStorage();
     },
     methods: {
-<<<<<<< HEAD
         getAreaCode: function () {
             axios
                 .get('https://api.gnavi.co.jp/master/AreaSearchAPI/v3/', {
@@ -84,6 +83,7 @@ const main = new Vue({
                         500	処理中にエラーが発生した
                     */
                 })
+            this.saveSessionStorage();
         },
 
         getPrefCode: function () {
@@ -115,6 +115,7 @@ const main = new Vue({
                 })
                 .catch(error => {
                 })
+            this.saveSessionStorage();
         },
 
         getStates: function () {
@@ -144,7 +145,6 @@ const main = new Vue({
                 })
         },
 
-=======
     /*
         RestSearchで半径指定のためだけにsearchHandlerを一度経由する
         parameter
@@ -152,7 +152,6 @@ const main = new Vue({
         return
             なし
     */
->>>>>>> v1.0
         searchHandler: function () {
             if (this.latitude == '' || this.longitude == '') {
                 // 検索時に位置情報がもしなければ再取得する。
@@ -235,6 +234,8 @@ const main = new Vue({
             sessionStorage.range = this.range;
             sessionStorage.freeword = this.freeword;
             sessionStorage.page = this.page;
+            sessionStorage.area = this.area;
+            sessionStorage.pref = this.pref;
         },
 
     /* 
@@ -254,6 +255,13 @@ const main = new Vue({
             }
             if (sessionStorage.getItem('page')) {
                 this.page = Number(sessionStorage.getItem('page'));
+            }
+            if (sessionStorage.getItem('area')) {
+                this.area = Number(sessionStorage.getItem('area'));
+                this.getPrefCode();
+            }
+            if (sessionStorage.getItem('pref')) {
+                this.pref = Number(sessionStorage.getItem('pref'));
             }
             // 再検索
             this.searchHandler();
