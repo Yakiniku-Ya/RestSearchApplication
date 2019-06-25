@@ -16,13 +16,6 @@
     margin: 5px 0;
 }
 
-#form input.keyword {
-    outline: none;
-    border: solid 1px #dedede;
-    line-height: 25px;
-    width: 100%;
-}
-
 #form table.settings {
     width: 100%;
     height: auto;
@@ -41,15 +34,24 @@
 #form select {
     width: 100%;
     outline:none;
-    text-indent: 45%;
-    background: none;
+    background-color: white;
+    text-align: center;
+    text-align: webkit-center;
     vertical-align: middle;
-    font-size: inherit;
+    font-size: 15px;
     color: inherit;
-    padding: 0 12px;
+    padding: 4px 0;
     border: solid 1px #dedede;
     color:black;
     border-radius:3px;
+}
+
+#form input.keyword {
+    outline: none;
+    border: solid 1px #dedede;
+    padding-left: 5px;
+    line-height: 25px;
+    width: 100%;
 }
 
 #form .search_button span {
@@ -278,7 +280,7 @@
 
     #form .search_button span {
         margin-top: 5px;
-        padding: 1px 100px;
+        padding: 3px 100px;
     }
 
     #error_message {

@@ -18,8 +18,8 @@ const main = new Vue({
         page: 0,
         pages: 1,
         freeword: '',
-        selected: '2',
-        options: [
+        range: '',
+        ranges: [
             {text: '指定しない', value: ''},
             {text: '300m', value: '1'},
             {text: '500m', value: '2'},
@@ -40,7 +40,7 @@ const main = new Vue({
             if (this.latitude == '' || this.longitude == '') {
                 this.getLocation();
             } else {
-                if (this.selected == '') {
+                if (this.range == '') {
                     // 半径指定なしの選択ではlatitudeとかlongitudeつけたらおこられる X(
                     this.restSearch(
                         {
@@ -55,7 +55,7 @@ const main = new Vue({
                     this.restSearch(
                         {
                             keyid: key,
-                            range: this.selected,
+                            range: this.range,
                             latitude: this.latitude,
                             longitude: this.longitude,
                             freeword: this.freeword,

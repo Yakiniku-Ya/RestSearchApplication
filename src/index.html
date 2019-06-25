@@ -19,9 +19,9 @@
                     <tr>
                         <th>半径</th>
                         <td>
-                            <select v-model="selected">
-                                <option v-for="option in options" v-bind:value="option.value">
-                                    {{ option.text }}
+                            <select v-model="range">
+                                <option v-for="range in ranges" v-bind:value="range.value">
+                                    {{ range.text }}
                                 </option>
                             </select>
                         </td>
@@ -32,7 +32,7 @@
                             <input 
                                 class="keyword" 
                                 v-model="freeword" 
-                                placeholder="キーワードを入力してください。"
+                                placeholder="例) 名古屋 味噌カツ"
                                 type="text">
                         </td>
                     </tr>
