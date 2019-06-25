@@ -2,7 +2,7 @@
     <head>
         <title>RestaurantSearch</title>
         <link rel="stylesheet" href="./styles/style.css">
-        <link rel="stylesheet" href="./styles/main.css">
+        <link rel="stylesheet" href="./styles/index.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="icon" href="./images/favicon.ico">
         <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -14,8 +14,14 @@
         </div>
         <div id="main">
             <form id="form">
+                <!--
+                    検索設定フォーム
+                -->
                 <h3>レストラン検索設定</h3>
                 <table class="settings">
+                    <!--
+                        半径検索エリア
+                    -->
                     <tr>
                         <th>地方</th>
                         <td>
@@ -56,6 +62,9 @@
                             </select>
                         </td>
                     </tr>
+                    <!--
+                        キーワード検索エリア
+                    -->
                     <tr>
                         <th>キーワード</th>
                         <td>
@@ -72,6 +81,9 @@
                 <div class="search_button"><span @click="submit">検索</span></div>
             </form>
             <div id="error_message" v-if="error_message">
+                <!--
+                    エラー時表示エリア
+                -->
                 <div class="material-icons">error_outline</div>
                 <div class="error_content">
                     <h2 class="error_title">Error:{{ error.message }}</h2>
@@ -79,9 +91,14 @@
                 </div>
             </div>
             <div id="result" v-else>
+                <!--
+                    正常にレスポンスが返ってきたときのリザルト表示エリア
+                -->
                 <div id="elements">
                     <div id="element" v-for="element in results">
-                            
+                        <!--
+                            各リザルトは基本flexで表示し、要素内に画像と店舗名と店舗へのアクセスを含む
+                        -->
                         <div class="thumbnail">
                             <img v-if=element.image.shop_image1 :src="element.image.shop_image1" alt="shop_image">
                             <img v-else src="./images/no_image.png" alt="NO IMAGE">
@@ -98,6 +115,9 @@
                 </div>
             </div>
             <div id="paging">
+                <!--
+                    ページング用のボタンエリア
+                -->
                 <span @click="prevPage">前のページ</span> 
                 {{ page + 1 }} / {{ pages }}
                 <span @click="nextPage">次のページ</span>

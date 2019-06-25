@@ -1,6 +1,18 @@
+/*
+
+    #main indexページ全体のデザイン     
+
+*/
+
 #main {
     padding-top: 80px;
 }
+
+/*
+
+    #form 検索フォーム関連CSS
+
+*/
 
 #form {
     display: block;
@@ -54,6 +66,8 @@
     width: 100%;
 }
 
+/* ボタン用デザイン @mouseでhoverする */
+
 #form .search_button span {
     display: inline-block;
     vertical-align: middle;
@@ -69,6 +83,12 @@
 #form .search_button span:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
+
+/*
+
+    #error_message エラーメッセージ関連CSS
+
+*/
 
 #error_message {
     display: flex;
@@ -96,9 +116,22 @@
     border-bottom: solid 2px white;
 }
 
+/*
+
+    #result 検索結果関連CSS
+
+*/
+
 #result {
     margin: 0 auto;
 }
+
+/*
+
+    #element 検索結果の各要素用のCSS
+    ボタンと同じように@mouseでhoverする
+
+*/
 
 #elements {
     display: flex;
@@ -153,9 +186,17 @@
     font-size: 16px;
 }
 
+/*
+
+    #paging ページング用エリア関連CSS
+
+*/
+
 #paging {
     text-align: center;
 }
+
+/* ページングボタン用デザイン @mouseでhoverする */
 
 #paging span {
     display: inline-block;
@@ -202,6 +243,7 @@
     }
 
     #element {
+        text-align: center;
         flex-basis: 282px;
     }
 
@@ -245,6 +287,7 @@
 
     #element {
         flex-basis: 300px;
+        text-align: center;
     }
 
     #element .thumbnail img {
@@ -316,7 +359,7 @@
 
     #element .thumbnail img {
         width: 100px;
-        height: 100%;
+    height: 100%;
         max-height: 100px;
     }
 

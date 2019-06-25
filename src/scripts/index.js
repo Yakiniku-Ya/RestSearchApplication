@@ -1,7 +1,10 @@
 const url = "https://api.gnavi.co.jp/RestSearchAPI/v3/"
-// const key = "6526d105b1d4506fdb09b7d64afa244b"
 const key = "578f48400166717797a5f1da5f50e583"
 
+/*
+    issue #3
+    formのinput-textでエンター押したら検索ではなく更新されてしまうのを修正
+ */
 document.onkeypress = function(e){
     var ref=e.target;
     if (e.key === 'Enter' && ref.type == 'text'){
@@ -45,11 +48,15 @@ const main = new Vue({
         results: []
     },
     mounted () {
+    /*
+        Vue読み込み → getLocationで緯度経度取得
+    */
         this.getLocation();
         this.getAreaCode();
         this.loadSessionStorage();
     },
     methods: {
+<<<<<<< HEAD
         getAreaCode: function () {
             axios
                 .get('https://api.gnavi.co.jp/master/AreaSearchAPI/v3/', {
@@ -137,12 +144,22 @@ const main = new Vue({
                 })
         },
 
+=======
+    /*
+        RestSearchで半径指定のためだけにsearchHandlerを一度経由する
+        parameter
+            なし
+        return
+            なし
+    */
+>>>>>>> v1.0
         searchHandler: function () {
             if (this.latitude == '' || this.longitude == '') {
+                // 検索時に位置情報がもしなければ再取得する。
                 this.getLocation();
             } else {
                 if (this.range == '') {
-                    // 半径指定なしの選択ではlatitudeとかlongitudeつけたらおこられる X(
+                    // 半径指定なしの選択ではlatitudeとかlongitudeつけたらおこられるのでその対策
                     this.restSearch(
                         {
                             keyid: key,
@@ -155,7 +172,7 @@ const main = new Vue({
                         }
                     );
                 } else {
-                    // 半径指定をした状態でのレストラン検索（freeword検索可能）
+                    // 半径指定をした状態でのレストラン検索（freewordとAND検索可能）
                     this.restSearch(
                         {
                             keyid: key,
@@ -175,6 +192,13 @@ const main = new Vue({
             }
         },
 
+    /*
+        geolocationAPIを使って緯度経度をもってくる
+        parameter
+            なし
+        return
+            なし
+    */
         getLocation: function () {
             navigator.geolocation.getCurrentPosition (
                 function(position) {
@@ -234,15 +258,27 @@ const main = new Vue({
             // 再検索
             this.searchHandler();
         },
-
+    
+    /*
+        検索ボタンやformのinput-textでエンターキー押したときに呼ばれる。
+        一般的なsubmit機能みたいなもの。
+    */
+    
         submit: function () {
-            // Searchボタンをおしてsubmitした時の挙動というかpageとかのリセット。
             this.page = 0;
             this.pages = -1;
             this.results = [];
             this.searchHandler();
         },
 
+    /*
+        ページングのためのprevボタンとnextボタン
+        いろいろ考えたけどとりあえず毎回offset_pageパラメータを変えて再リクエストする方法で実装
+        parameter
+            なし
+        return
+            なし
+    */
         prevPage: function () {
             if (0 >= this.page) {
                 return;
@@ -261,6 +297,15 @@ const main = new Vue({
             this.searchHandler();
         },
         
+    /*
+        gnaviAPIに対してaxiosを用いてhttpリクエストを行う
+        引数としてリクエストパラメータを使う。
+        取得したレスポンスを整形してresultリストにする。
+        parameter
+            params: リクエストパラメータ
+        return
+            なし
+    */
         restSearch: function (params)  {
             console.log('requested!');
             axios

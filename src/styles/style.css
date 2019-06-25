@@ -1,3 +1,9 @@
+/*
+
+    html全体のデザイン（主にフォント）
+
+*/
+
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP|Roboto&display=swap');
 
 html {
@@ -6,6 +12,13 @@ html {
     /* スマホのフォントサイズ自動調整対策 */
     -webkit-text-size-adjust: 100%;
 }
+
+/*
+
+    #topのデザイン用CSS
+    上のRestSearchApplicationって文字がスクロールしてもついてくる
+
+*/
 
 #top {
     background: #ffffff;
@@ -27,9 +40,21 @@ html {
     text-decoration: none;
 }
 
+/*
+    
+    bodyのデザイン用CSS
+
+*/
+
 body {
     padding: 0;
 }
+
+/*
+
+    #footerのデザイン用CSS
+
+*/
 
 #footer {
     width: 100%;

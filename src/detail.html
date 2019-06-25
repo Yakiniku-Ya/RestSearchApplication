@@ -13,77 +13,102 @@
             <h1><a href="./index.html"><div class="material-icons">fastfood</div> <span>RestSearchApplication</span></a></h1>
         </div>
         <div id=detail>
-                <div id="image">
-                    <img class="back" v-if="image_url.shop_image2" :src="image_url.shop_image2">
-                    <img class="back" v-else-if="image_url.shop_image1" :src="image_url.shop_image1">
-                    <img class="noimg" v-else>
-                    <div id="bottoms">
-                        <img class="icon" v-if="image_url.shop_image1" :src="image_url.shop_image1">
-                        <!-- いらない気がする
-                        <img class="icon" v-else src="./images/no_image.png" alt="icon">
+            <!--
+                店舗詳細エリア
+            -->
+            <div id="image">
+                <!--
+                    画面上部の画像エリア
+                    スマホとPC&タブレットで表示が変わる
+                -->
+                <img class="back" v-if="image_url.shop_image2" :src="image_url.shop_image2">
+                <img class="back" v-else-if="image_url.shop_image1" :src="image_url.shop_image1">
+                <img class="noimg" v-else>
+                <!--
+                    スマホでのみbottomsが表示される
+                -->
+                <div id="bottoms">
+                    <img class="icon" v-if="image_url.shop_image1" :src="image_url.shop_image1">
+                    <!-- いらない気がする
+                    <img class="icon" v-else src="./images/no_image.png" alt="icon">
+                    -->
+                    <div id="names">
+                        <h2 class="name">{{ result.name }}</h2>
+                        <span class="kana">{{ result.name_kana }}</span>
+                    </div>
+                </div>
+            </div>
+            <div id="heads">
+                <!--
+                    スマホでは.nameと.kanaとhrは表示されない
+                -->
+                <h2 class="name">{{ result.name }}</h2>
+                <span class="kana">{{ result.name_kana }}</span>
+                <hr>
+                <article>
+                    <!--
+                        記事情報エリア
+                    -->
+                    <div id="pr" v-if="pr.pr_short">
+                        <!--
+                            店舗の記事のPRをかくところ。pr_longだけの店舗は表示されない。
                         -->
-                        <div id="names">
-                            <h2 class="name">{{ result.name }}</h2>
-                            <span class="kana">{{ result.name_kana }}</span>
-                        </div>
+                        <h3>{{ pr.pr_short }}</h3>
+                        <p>{{ pr.pr_long }}</p>
                     </div>
-                </div>
-                <div id="heads">
-                    <h2 class="name">{{ result.name }}</h2>
-                    <span class="kana">{{ result.name_kana }}</span>
-                    <hr>
-                    <article>
-                        <div id="pr" v-if="pr.pr_short">
-                            <h3>{{ pr.pr_short }}</h3>
-                            <p>{{ pr.pr_long }}</p>
-                        </div>
-                        <div id="info">
-                            <table>
-                                <tr>
-                                    <th><span class="title">住所</span></th>
-                                    <td>
-                                        <span class="address" v-if="result.address">{{ result.address }}</span>
-                                        <span v-else>No Data.</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th><span class="title">アクセス</span></th>
-                                    <td>
-                                        <span class="access">
-                                            <span v-if="access.line">{{ access.line }}</span><span v-if="access.station">{{ access.station }}</span><span v-if="access.station_exit">({{ result.access.station_exit }})</span><span v-if="access.walk">から{{ result.access.walk }}分</span>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th><span class="title">電話番号</span></th>
-                                    <td>
-                                        <span class="tel" v-if="result.tel">{{ result.tel }}</span>
-                                        <span v-else>No Data X(</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th><span class="title">営業時間</span></th>
-                                    <td>
-                                        <span class="opentime" v-if="result.opentime">{{ result.opentime }}</span>
-                                        <span v-else>No Data X(</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th><span class="title">休業日</span></th>
-                                    <td>
-                                        <span class="holiday" v-if="result.holiday"> {{ result.holiday }}</span>
-                                        <span v-else>No Data X(</span>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </article>
-                    <div id="link">
-                        <a :href=result.url>ぐるなびで見る</a>
+                    <div id="info">
+                        <!--
+                            店舗の情報を表示するところ。
+                        -->
+                        <table>
+                            <tr>
+                                <th><span class="title">住所</span></th>
+                                <td>
+                                    <span class="address" v-if="result.address">{{ result.address }}</span>
+                                    <span v-else>No Data.</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="title">アクセス</span></th>
+                                <td>
+                                    <span class="access">
+                                        <span v-if="access.line">{{ access.line }}</span><span v-if="access.station">{{ access.station }}</span><span v-if="access.station_exit">({{ result.access.station_exit }})</span><span v-if="access.walk">から{{ result.access.walk }}分</span>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="title">電話番号</span></th>
+                                <td>
+                                    <span class="tel" v-if="result.tel">{{ result.tel }}</span>
+                                    <span v-else>No Data X(</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="title">営業時間</span></th>
+                                <td>
+                                    <span class="opentime" v-if="result.opentime">{{ result.opentime }}</span>
+                                    <span v-else>No Data X(</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="title">休業日</span></th>
+                                <td>
+                                    <span class="holiday" v-if="result.holiday"> {{ result.holiday }}</span>
+                                    <span v-else>No Data X(</span>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                <div id="footer">
-                    Supported by <a href="https://api.gnavi.co.jp/api/scope/" target="_blank">ぐるなびWebService</a>
+                </article>
+                <div id="link">
+                    <!--
+                        ぐるなびへのリンク用のエリア
+                    -->
+                    <a :href=result.url>ぐるなびで見る</a>
                 </div>
+            </div>
+            <div id="footer">
+                Supported by <a href="https://api.gnavi.co.jp/api/scope/" target="_blank">ぐるなびWebService</a>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>

@@ -1,3 +1,9 @@
+/*
+
+    #detailの店舗詳細用CSS
+
+*/
+
 #detail {
     padding-top: 80px;
     position: relative;
@@ -5,6 +11,12 @@
     margin: 5px auto;
     display: block;
 }
+
+/*
+
+    #image 店舗の画像を表示するCSS
+
+*/
 
 #image {
     text-align: center;
@@ -14,6 +26,12 @@
 #image img {
     max-height: 300px;
 }
+
+/*
+
+    #heads 店舗名やその店舗のPR、基本的な情報を表示するCSS
+
+*/
 
 #heads {
     margin: 0 10px;
@@ -42,6 +60,8 @@
     position: relative;
 }
 
+/* 店舗のPRエリア */
+
 #pr h3 {
     margin: 5px 0;
     border-bottom: #555555;
@@ -51,6 +71,8 @@
     flex-basis: 50%;
     margin: 5px 0;
 }
+
+/* 店舗の基本情報のテーブルが入るエリア */
 
 #info {
     flex-basis: 50%;
@@ -80,6 +102,10 @@
 #info table td {
     width: 80%;
 }
+
+/* 
+    #link ぐるなびへのリンク用のデザイン
+*/
 
 #link {
     text-align: center;
