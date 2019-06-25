@@ -17,6 +17,36 @@
                 <h3>レストラン検索設定</h3>
                 <table class="settings">
                     <tr>
+                        <th>地方</th>
+                        <td>
+                            <select v-model="area" @change="getPrefCode">
+                                <option v-for="area in areas" v-bind:value="area.value">
+                                    {{ area.text }}
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>都道府県</th>
+                        <td>
+                            <select v-model="pref" @change="getStates">
+                                <option v-for="pref in prefs" v-bind:value="pref.value">
+                                    {{ pref.text }}
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>地域</th>
+                        <td>
+                            <select v-model="state">
+                                <option v-for="state in states" v-bind:value="state.value">
+                                    {{ state.text }}
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>半径</th>
                         <td>
                             <select v-model="range">

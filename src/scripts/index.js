@@ -18,6 +18,18 @@ const main = new Vue({
         page: 0,
         pages: 1,
         freeword: '',
+        area: '',
+        areas: [
+            {text: '指定しない', value: ''}
+        ],
+        pref: '',
+        prefs: [
+            {text: '指定しない', value: ''}
+        ],
+        state: '',
+        states: [
+            {text: '指定しない', value: ''}
+        ],
         range: '',
         ranges: [
             {text: '指定しない', value: ''},
@@ -34,8 +46,96 @@ const main = new Vue({
     },
     mounted () {
         this.getLocation();
+        this.getAreaCode();
     },
     methods: {
+        getAreaCode: function () {
+            axios
+                .get('https://api.gnavi.co.jp/master/AreaSearchAPI/v3/', {
+                    params: {
+                        keyid: key,
+                        lang: 'ja'
+                    }
+                })
+                .then(response => {
+                    response.data.area.forEach(element => {
+                        const elements = {
+                            text: element.area_name,
+                            value: element.area_code
+                        };
+                        this.areas.push(elements);
+                    });
+                })
+                .catch(error => {
+                    /*
+                        400	不正なパラメータが指定された
+                        401	不正なアクセス（認証エラー）
+                        404	指定された店舗の情報が存在しない
+                        405	不正なアクセス
+                        429	リクエスト回数上限超過
+                        500	処理中にエラーが発生した
+                    */
+                })
+        },
+
+        getPrefCode: function () {
+            this.pref = '';
+            this.prefs = [
+                {text: '指定しない', value: ''}
+            ];
+            this.state = '';
+            this.states = [
+                {text: '指定しない', value: ''}
+            ];
+            axios
+                .get('https://api.gnavi.co.jp/master/PrefSearchAPI/v3/', {
+                    params: {
+                        keyid: key,
+                        lang: 'ja'
+                    }
+                })
+                .then(response => {
+                    response.data.pref.forEach(element => {
+                        if (this.area == element.area_code) {
+                            const pref = {
+                                text: element.pref_name,
+                                value: element.pref_code
+                            };
+                            this.prefs.push(pref);
+                        }
+                    });
+                })
+                .catch(error => {
+                })
+        },
+
+        getStates: function () {
+            this.state = '';
+            this.states = [
+                {text: '指定しない', value: ''}
+            ];
+            axios
+                .get('https://api.gnavi.co.jp/master/GAreaLargeSearchAPI/v3/', {
+                    params: {
+                        keyid: key,
+                        lang: 'ja'
+                    }
+                })
+                .then(response => {
+                    response.data.garea_large.forEach(element => {
+                        if (this.pref == element.pref.pref_code) {
+                            const state = {
+                                text: element.areaname_l,
+                                value: element.areacode_l
+                            };
+                            this.states.push(state);
+                        }
+                    });
+                })
+                .catch(error => {
+                })
+        },
+
         searchHandler: function () {
             if (this.latitude == '' || this.longitude == '') {
                 this.getLocation();
@@ -46,6 +146,9 @@ const main = new Vue({
                         {
                             keyid: key,
                             freeword: this.freeword,
+                            area: this.area,
+                            pref: this.pref,
+                            areacode_l: this.areacode_l,
                             offset_page: this.page + 1,
                             hit_per_page: 30
                         }
@@ -58,6 +161,9 @@ const main = new Vue({
                             range: this.range,
                             latitude: this.latitude,
                             longitude: this.longitude,
+                            area: this.area,
+                            pref: this.pref,
+                            areacode_l: this.areacode_l,
                             freeword: this.freeword,
                             offset_page: this.page + 1,
                             hit_per_page: 30
