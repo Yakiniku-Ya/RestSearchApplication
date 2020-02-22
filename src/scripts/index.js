@@ -1,5 +1,5 @@
 const url = "https://api.gnavi.co.jp/RestSearchAPI/v3/"
-const key = "578f48400166717797a5f1da5f50e583"
+const key = "c2a5f92539c048d2cc984201a43a6b7d"
 
 /*
     issue #3
